@@ -85,9 +85,9 @@ namespace DynamicStringDistributorGenerator {
                 var formKey = dialogResponse.Record.FormKey;
                 var modKey = formKey.ModKey;
                 var name = modKey.ToString();
-                if (!LoadOrder.ContainsKey(name)) {
-                    throw new Exception("LoadOrder is null");
-                }
+                // if (!LoadOrder.ContainsKey(name)) {
+                //     throw new Exception($"{name} LoadOrder is null");
+                // }
 
                 if (!Output.ContainsKey(name)) {
                     Output[name] = new List<INFO_NAM1>();
@@ -104,7 +104,7 @@ namespace DynamicStringDistributorGenerator {
 
                         Output[name].Add(new INFO_NAM1() {
                             type = "INFO NAM1",
-                            index = i + 1,
+                            index = dialogResponse.Record.Responses[i].ResponseNumber,
                             @string = "[Gen] " + str,
                             // original = str,
                             form_id = $"{(formKey.ID):X6}|{modKey}",
@@ -112,7 +112,7 @@ namespace DynamicStringDistributorGenerator {
                     } else {
                         Output[name].Add(new INFO_NAM1() {
                             type = "INFO NAM1",
-                            index = i + 1,
+                            index = dialogResponse.Record.Responses[i].ResponseNumber,
                             @string = "[Gen] " + chnStr,
                             original = engStr,
                             form_id = $"{(formKey.ID):X6}|{modKey}",
