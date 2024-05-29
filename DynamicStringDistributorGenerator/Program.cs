@@ -22,7 +22,6 @@ namespace DynamicStringDistributorGenerator {
         protected static Lazy<Config> Config = null!;
 
         public static async Task<int> Main(string[] args) {
-            Console.WriteLine(args);
             return await SynthesisPipeline.Instance
                 .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch, new PatcherPreferences() {
                 })
